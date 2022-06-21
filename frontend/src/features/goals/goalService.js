@@ -19,7 +19,7 @@ const createGoal = async (goalData, token) => {
 const getGoals = async (token) => {
   const config = {
     headers: {
-      Authorization: `Bearer ${token}`,
+      'Authorization': `Bearer ${token}`,
     },
   }
 
@@ -41,10 +41,25 @@ const deleteGoal = async (goalId, token) => {
   return response.data
 }
 
+// Upadate user goal
+const updateGoal = async (itemId,goalData, token) => {
+  const config = {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    },
+  }
+
+  const response = await axios.put(API_URL + itemId, {text: goalData}, config)
+  console.log(API_URL + itemId)
+
+  return response.data
+}
+
 const goalService = {
   createGoal,
   getGoals,
   deleteGoal,
+  updateGoal
 }
 
 export default goalService
